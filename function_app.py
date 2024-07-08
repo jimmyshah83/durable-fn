@@ -15,13 +15,20 @@ async def http_start(req: func.HttpRequest, client):
 # Orchestrator
 @myApp.orchestration_trigger(context_name="context")
 def hello_orchestrator(context):
-    result1 = yield context.call_activity("hello", "Seattle")
-    result2 = yield context.call_activity("hello", "Tokyo")
-    result3 = yield context.call_activity("hello", "London")
+    f1 = yield context.call_activity("f1", "Hello From F1")
+    f2 = yield context.call_activity("f2", f1)
+    result = yield context.call_activity("f3", f2)
+    return result
 
-    return [result1, result2, result3]
+# Chaining Activity Functions
+@myApp.activity_trigger(input_name="msgf1")
+def f1(msgf1: str):
+    return f"{msgf1}"
 
-# Activity
-@myApp.activity_trigger(input_name="city")
-def hello(city: str):
-    return f"Hello {city}"
+@myApp.activity_trigger(input_name="msgf2")
+def f2(msgf2: str):
+    return f"F2 => {msgf2}"
+
+@myApp.activity_trigger(input_name="msgf3")
+def f3(msgf3: str):
+    return f"F3 => {msgf3}"
