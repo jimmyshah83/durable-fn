@@ -10,8 +10,8 @@ param aseSubnetNameDelegation string = 'asev3-subnet-01-delegation'
 @description('Azure App Service Environment name')
 param aseName string = 'asev3-env-01'
 
-// @description('Azure App Service Plan name')
-// param appServicePlanName string = 'isolated-asp-asev3'
+@description('Azure App Service Plan name')
+param appServicePlanName string = 'isolated-asp-asev3'
 
 // @description('Azure Function App name')
 // param functionAppName string = 'function-app-asev3'
@@ -74,31 +74,31 @@ resource asev3demoenv 'Microsoft.Web/hostingEnvironments@2023-01-01' = {
   }
 }
 
-// resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
-//   name: appServicePlanName
-//   location: location
-//   properties: {
-//     hostingEnvironmentProfile: {
-//       id: asev3demoenv.id
-//     }
-//     perSiteScaling: false
-//     maximumElasticWorkerCount: 1
-//     isSpot: false
-//     reserved: true
-//     isXenon: false
-//     hyperV: false
-//     targetWorkerCount: 0
-//     targetWorkerSizeId: 0
-//   }
-//   sku: {
-//     name: 'I1v2'
-//     tier: 'IsolatedV2'
-//     size: 'I1v2'
-//     family: 'Iv2'
-//     capacity: 1
-//   }
-//   kind: 'linux'
-// }
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
+  name: appServicePlanName
+  location: location
+  properties: {
+    hostingEnvironmentProfile: {
+      id: asev3demoenv.id
+    }
+    perSiteScaling: false
+    maximumElasticWorkerCount: 1
+    isSpot: false
+    reserved: true
+    isXenon: false
+    hyperV: false
+    targetWorkerCount: 0
+    targetWorkerSizeId: 0
+  }
+  sku: {
+    name: 'I1v2'
+    tier: 'IsolatedV2'
+    size: 'I1v2'
+    family: 'Iv2'
+    capacity: 1
+  }
+  kind: 'linux'
+}
 
 // resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
 //   name: functionAppName
