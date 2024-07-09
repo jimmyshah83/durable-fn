@@ -12,7 +12,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'js-asev3-fn-demo-01' # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: "./release.zip" # set this to the path to your web app project, defaults to the repository root
   PYTHON_VERSION: '3.10' # set this to the python version to use (supports 3.6, 3.7, 3.8)
 
 jobs:
@@ -66,12 +66,12 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip     
         
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+      # - name: Login to Azure
+      #   uses: azure/login@v1
+      #   with:
+      #     client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+      #     tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+      #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
@@ -81,3 +81,4 @@ jobs:
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           scm-do-build-during-deployment: true
           enable-oryx-build: true
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
