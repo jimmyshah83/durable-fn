@@ -28,6 +28,7 @@ Implements a combination of Async HTTP API Pattern along with function chaining
 
 5. Deploy the Function App with CI/CD
 - Create Federated Credentials: https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux
+- Set WEBSITE_RUN_FROM_PACKAGE=1 in the Application Settings
 
 6. Clean up
 `az group delete --name <RG name>`
