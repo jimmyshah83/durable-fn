@@ -7,7 +7,7 @@ Implements a combination of Async HTTP API Pattern along with function chaining
 - Create a durable function and test locally  
 `func start`
 
-- Deploy both to Azure on a standard ASP, Y1  
+- Create a Function on a standard ASP, Y1  
 `az functionapp create --resource-group <Resource Group Name> --consumption-plan-location <Location> --runtime python --runtime-version <PYTHON Runtime version> --functions-version 4 --name <Unique app name> --os-type linux --storage-account <Storage Account Name>`
 
 - Publish to Function app
