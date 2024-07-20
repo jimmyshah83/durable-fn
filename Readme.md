@@ -39,6 +39,7 @@ With an internal VIP App Service Environment, the publishing endpoints are only 
 
 Without additional changes, internet-based CI systems like GitHub and Azure DevOps don't work with an internal VIP App Service Environment. The publishing endpoint isn't internet accessible. You can enable publishing to an internal VIP App Service Environment from Azure DevOps, by installing a self-hosted release agent in the virtual network.
 ```
+STEPS: https://docs.github.com/en/enterprise-cloud@latest/admin/configuring-settings/configuring-private-networking-for-hosted-compute-products/configuring-private-networking-for-github-hosted-runners-in-your-enterprise  
 
 6. Clean up
 `az group delete --name <RG name>`
