@@ -138,3 +138,5 @@ __azurite_db*__.json
 .vscode/
 request.http
 deployment/params.json
+deployment/runner-setup.sh
+deployment/actions-nsg-deployment.bicep
